@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1539151693241" clover="3.2.0">
+  <project timestamp="1539151693241" name="All files">
+    <metrics statements="36" coveredstatements="36" conditionals="38" coveredconditionals="33" methods="15" coveredmethods="15" elements="89" coveredelements="84" complexity="0" loc="36" ncloc="36" packages="4" files="6" classes="6">
+      <package name="actions">
+        <metrics statements="9" coveredstatements="9" conditionals="9" coveredconditionals="6" methods="8" coveredmethods="8"/>
+        <file name="expenses.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/actions/expenses.js">
+          <metrics statements="4" coveredstatements="4" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="24" count="1" type="cond" truecount="0" falsecount="1"/>
+          <line num="30" count="1" type="stmt"/>
+        </file>
+        <file name="filters.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/actions/filters.js">
+          <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="1" methods="5" coveredmethods="5"/>
+          <line num="3" count="2" type="cond" truecount="1" falsecount="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="25" count="1" type="cond" truecount="0" falsecount="1"/>
+          <line num="32" count="1" type="cond" truecount="0" falsecount="1"/>
+        </file>
+      </package>
+      <package name="reducers">
+        <metrics statements="17" coveredstatements="17" conditionals="14" coveredconditionals="14" methods="4" coveredmethods="4"/>
+        <file name="expenses.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/reducers/expenses.js">
+          <metrics statements="9" coveredstatements="9" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="6" type="cond" truecount="4" falsecount="0"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="17" count="6" type="stmt"/>
+          <line num="20" count="2" type="stmt"/>
+          <line num="21" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="29" count="5" type="stmt"/>
+          <line num="34" count="1" type="stmt"/>
+        </file>
+        <file name="filters.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/reducers/filters.js">
+          <metrics statements="8" coveredstatements="8" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="13" count="6" type="cond" truecount="6" falsecount="0"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="selectors">
+        <metrics statements="10" coveredstatements="10" conditionals="15" coveredconditionals="13" methods="3" coveredmethods="3"/>
+        <file name="expenses.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/selectors/expenses.js">
+          <metrics statements="10" coveredstatements="10" conditionals="15" coveredconditionals="13" methods="3" coveredmethods="3"/>
+          <line num="5" count="5" type="stmt"/>
+          <line num="7" count="15" type="stmt"/>
+          <line num="9" count="15" type="cond" truecount="2" falsecount="0"/>
+          <line num="10" count="15" type="cond" truecount="2" falsecount="0"/>
+          <line num="11" count="15" type="stmt"/>
+          <line num="13" count="15" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="18" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="19" count="3" type="cond" truecount="1" falsecount="1"/>
+        </file>
+      </package>
+      <package name="tests.fixtures">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="expenses.js" path="/Users/Christian/Documents/dev/React-course-projects/expensify-app/src/tests/fixtures/expenses.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
