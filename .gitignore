@@ -87,3 +87,4 @@ fabric.properties
 /public/styles.css
 /public/bundle.js.map
 /public/styles.css.map
+/coverage/
