@@ -76,6 +76,7 @@ test("SortByAmountTest", () => {
 	const result = selectedExpenses(testData, filters);
 
 	expect(result.length).toBe(3);
-	expect(result).toEqual([testData[2], testData[1], testData[0]])
+	expect(result).toEqual([testData[1], testData[2], testData[0]])
+
 
 });

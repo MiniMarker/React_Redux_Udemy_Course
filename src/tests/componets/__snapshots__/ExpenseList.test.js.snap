@@ -25,7 +25,7 @@ exports[`RenderExpenseListWithExpenses 1`] = `
   <ExpenseListItem
     expense={
       Object {
-        "amount": 1000,
+        "amount": 109500,
         "createdAt": "1969-12-28T00:00:00.000Z",
         "description": "Rent",
         "id": "2",
