@@ -1,5 +1,10 @@
+import {startAddExpense, addExpense, editExpense, removeExpense} from "../../actions/expenses";
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk'
+import testData from '../fixtures/expenses';
+import database from '../../firebase/firebase';
 
-import {addExpense, editExpense, removeExpense} from "../../actions/expenses";
+const createMockStore = configureMockStore([thunk]);
 
 test('RemoveExpenseTest', () => {
 
@@ -28,6 +33,7 @@ test('EditExpenseTest', () => {
 	});
 });
 
+/*
 test('AddExpenseTest_DefaultValues', () => {
 	const action = addExpense();
 
@@ -42,23 +48,84 @@ test('AddExpenseTest_DefaultValues', () => {
 		}
 	})
 });
+*/
+
+//Need to mock a store to fake db calls
+test("AddExpenseToDbProvidedData", (done) => {
+
+	//create mock store
+	const store = createMockStore({});
+	const expenseData = {
+		description: "Mouse",
+		amount: 3000,
+		note: "other was broken",
+		createdAt: 1000
+	};
+
+	store.dispatch(startAddExpense(expenseData)).then(() => {
+		const actions = store.getActions();
+
+		expect(actions[0]).toEqual({
+			type: 'ADD_EXPENSE',
+			expense: {
+				id: expect.any(String),
+				...expenseData
+			}
+		});
+
+		//using promise-nesting to return a promise from the promise
+		return database
+			.ref(`expenses/${actions[0].expense.id}`)
+			.once('value')
+
+	}).then((snapshot) => {
+		expect(snapshot.val()).toEqual(expenseData);
+
+		done();
+	});
+
+});
+
+test("AddExpenseToDbDefaultData", (done) => {
+
+	//create mock store
+	const store = createMockStore({});
+	const defaultExpenseData = {
+		description: "",
+		note: "",
+		amount: 0,
+		createdAt: 0
+	};
+
+	store.dispatch(startAddExpense(defaultExpenseData)).then(() => {
+		const actions = store.getActions();
+
+		expect(actions[0]).toEqual({
+			type: 'ADD_EXPENSE',
+			expense: {
+				id: expect.any(String),
+				...defaultExpenseData
+			}
+		});
+
+		//using promise-nesting to return a promise from the promise
+		return database
+			.ref(`expenses/${actions[0].expense.id}`)
+			.once('value')
+
+	}).then((snapshot) => {
+		expect(snapshot.val()).toEqual(defaultExpenseData);
+
+		done();
+	});
+});
 
 test('AddExpenseTest', () => {
 
-	const expenseData = {
-		description: "rent",
-		amount: 109500,
-		createdAt: 1000,
-		note: "this was last moths rent"
-	};
-
-	const action = addExpense(expenseData);
+	const action = addExpense(testData[2]);
 
 	expect(action).toEqual({
 		type: 'ADD_EXPENSE',
-		expense: {
-			...expenseData,
-			id: expect.any(String),
-		}
+		expense: testData[2]
 	});
 });
