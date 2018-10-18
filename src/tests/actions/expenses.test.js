@@ -4,7 +4,7 @@ import {
 	editExpense,
 	removeExpense,
 	setExpenses,
-	startSetExpenses, startRemoveExpense
+	startSetExpenses, startRemoveExpense, startEditExpense
 } from "../../actions/expenses";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
@@ -45,24 +45,24 @@ test('RemoveExpenseTest', () => {
 });
 
 test("RemoveExpenseFromDb", (done) => {
-    const store = createMockStore({});
+	const store = createMockStore({});
 
-    store.dispatch(startRemoveExpense(testData[1]))
-	    .then(() => {
-	    	const actions = store.getActions();
+	store.dispatch(startRemoveExpense(testData[1]))
+		.then(() => {
+			const actions = store.getActions();
 
-	    	expect(actions[0]).toEqual({
-			    type: "REMOVE_EXPENSE",
-			    id: testData[1].id
-		    });
+			expect(actions[0]).toEqual({
+				type: "REMOVE_EXPENSE",
+				id: testData[1].id
+			});
 
-	    	return database.ref(`expenses/${testData[1].id}`)
-			    .once('value')
-			    .then((snapshot) => {
-			    	expect(snapshot.val()).toBeFalsy();
-				    done();
-			    });
-	    })
+			return database.ref(`expenses/${testData[1].id}`)
+				.once('value')
+				.then((snapshot) => {
+					expect(snapshot.val()).toBeFalsy();
+					done();
+				});
+		})
 
 });
 
@@ -80,6 +80,32 @@ test('EditExpenseTest', () => {
 			note: 'testNote'
 		}
 	});
+});
+
+test("EditExpenseInDb", (done) => {
+	const store = createMockStore({});
+
+	const updatedExpense = {...testData[1], note: "Hello World"};
+
+	store.dispatch(startEditExpense(testData[1].id, updatedExpense))
+		.then(() => {
+
+			const actions = store.getActions();
+
+			expect(actions[0]).toEqual({
+				type: "EDIT_EXPENSE",
+				id: testData[1].id,
+				updates: updatedExpense
+			});
+
+			return database.ref(`expenses/${testData[1].id}`)
+				.once('value')
+				.then((snapshot) => {
+					expect(snapshot.val()).toEqual(updatedExpense);
+
+					done()
+				});
+		});
 });
 
 //Need to mock a store to fake db calls
