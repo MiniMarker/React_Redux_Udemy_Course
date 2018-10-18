@@ -89,3 +89,15 @@ test("EditExpenseInvalidIdTest", () => {
 	expect(state).toEqual(testData)
 
 });
+
+
+test("SetExpenses", () => {
+
+	const action = {
+		type: "SET_EXPENSE",
+		expenses: [testData[1]]
+	};
+
+	const state = expenseReducer(testData, action);
+	expect(state).toEqual([testData[1]])
+});

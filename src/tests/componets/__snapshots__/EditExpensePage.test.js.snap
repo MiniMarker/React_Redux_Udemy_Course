@@ -9,7 +9,7 @@ exports[`RenderEditExpensePageTest 1`] = `
     expense={
       Object {
         "amount": 4500,
-        "createdAt": "1970-01-05T00:00:00.000Z",
+        "createdAt": 345600000,
         "description": "Credit Card",
         "id": "3",
         "note": "",
