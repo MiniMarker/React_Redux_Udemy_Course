@@ -103,7 +103,7 @@ exports[`RenderErrorForInvalidFormSubmission 1`] = `
       id="submit-btn"
       type="submit"
     >
-      Add expense
+      Create
     </button>
   </form>
 </div>
@@ -215,7 +215,7 @@ exports[`RenderErrorForInvalidFormSubmission 2`] = `
       id="submit-btn"
       type="submit"
     >
-      Add expense
+      Create
     </button>
   </form>
 </div>
@@ -324,7 +324,7 @@ exports[`RenderExpenseFormDefaultValuesTest 1`] = `
       id="submit-btn"
       type="submit"
     >
-      Add expense
+      Create
     </button>
   </form>
 </div>
@@ -433,7 +433,7 @@ exports[`RenderExpenseFormWithTestData 1`] = `
       id="submit-btn"
       type="submit"
     >
-      Add expense
+      Apply
     </button>
   </form>
 </div>

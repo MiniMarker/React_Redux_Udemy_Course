@@ -16,7 +16,8 @@ export default class ExpenseForm extends React.Component {
 			amount: props.expense ? (props.expense.amount / 100).toString() : '',
 			createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
 			calendarFocused: false,
-			errorMessage: ''
+			errorMessage: '',
+			buttonText: props.expense ? "Apply" : "Create"
 		};
 	}
 
@@ -124,7 +125,7 @@ export default class ExpenseForm extends React.Component {
 						onChange={this.onNoteChange}
 					/>
 
-					<button id={"submit-btn"} type={"submit"}>Add expense</button>
+					<button id={"submit-btn"} type={"submit"}>{this.state.buttonText}</button>
 				</form>
 			</div>
 		);
