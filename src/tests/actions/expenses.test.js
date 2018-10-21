@@ -12,8 +12,10 @@ import testData from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
-
+const testUid = "j132bjk4b3254243e";
+const defaultAuthState = {auth: {uid: testUid}};
 beforeEach((done) => {
+
 
 	const expensesData = {};
 
@@ -26,7 +28,7 @@ beforeEach((done) => {
 		}
 	});
 
-	database.ref('expenses').set(expensesData).then(() => {
+	database.ref(`users/${testUid}/expenses`).set(expensesData).then(() => {
 		done();
 	})
 
@@ -45,7 +47,7 @@ test('RemoveExpenseTest', () => {
 });
 
 test("RemoveExpenseFromDb", (done) => {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	store.dispatch(startRemoveExpense(testData[1]))
 		.then(() => {
@@ -56,7 +58,7 @@ test("RemoveExpenseFromDb", (done) => {
 				id: testData[1].id
 			});
 
-			return database.ref(`expenses/${testData[1].id}`)
+			return database.ref(`users/${testUid}/expenses/${testData[1].id}`)
 				.once('value')
 				.then((snapshot) => {
 					expect(snapshot.val()).toBeFalsy();
@@ -83,7 +85,7 @@ test('EditExpenseTest', () => {
 });
 
 test("EditExpenseInDb", (done) => {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	const updatedExpense = {...testData[1], note: "Hello World"};
 
@@ -98,7 +100,7 @@ test("EditExpenseInDb", (done) => {
 				updates: updatedExpense
 			});
 
-			return database.ref(`expenses/${testData[1].id}`)
+			return database.ref(`users/${testUid}/expenses/${testData[1].id}`)
 				.once('value')
 				.then((snapshot) => {
 					expect(snapshot.val()).toEqual(updatedExpense);
@@ -112,7 +114,7 @@ test("EditExpenseInDb", (done) => {
 test("AddExpenseToDbProvidedData", (done) => {
 
 	//create mock store
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const expenseData = {
 		description: "Mouse",
 		amount: 3000,
@@ -133,7 +135,7 @@ test("AddExpenseToDbProvidedData", (done) => {
 
 		//using promise-nesting to return a promise from the promise
 		return database
-			.ref(`expenses/${actions[0].expense.id}`)
+			.ref(`users/${testUid}/expenses/${actions[0].expense.id}`)
 			.once('value')
 
 	}).then((snapshot) => {
@@ -147,7 +149,7 @@ test("AddExpenseToDbProvidedData", (done) => {
 test("AddExpenseToDbDefaultData", (done) => {
 
 	//create mock store
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const defaultExpenseData = {
 		description: "",
 		note: "",
@@ -168,7 +170,7 @@ test("AddExpenseToDbDefaultData", (done) => {
 
 		//using promise-nesting to return a promise from the promise
 		return database
-			.ref(`expenses/${actions[0].expense.id}`)
+			.ref(`users/${testUid}/expenses/${actions[0].expense.id}`)
 			.once('value')
 
 	}).then((snapshot) => {
@@ -198,7 +200,7 @@ test("SetUpSetExpenseObjectWithData", () => {
 });
 
 test("FetchExpensesFromFirebase", (done) => {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	store.dispatch(startSetExpenses())
 		.then(() => {
